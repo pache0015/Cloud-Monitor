@@ -30,4 +30,25 @@ const notify = function(service, status) {
         .catch(error => console.error(error));
 }
 
+function poll(serviceName, url, currentNotification, priorNotification) {
+
+    axios.get(url).then(res => {
+
+
+        if (res.status ==200){
+
+            statusChanger(currentNotification, true)
+
+            if ( !(currentNotification.value===priorNotification.value) ){
+                notificarPorDiscord(serviceName, "está activo");
+                console.log(serviceName, "está activo" );
+                statusChanger(priorNotification, currentNotification.value);
+                statusChanger(currentNotification, true);
+            }
+        }
+    }).catch( error => {
+        console.log(error);
+    })
+}
+
 app.listen(port);
