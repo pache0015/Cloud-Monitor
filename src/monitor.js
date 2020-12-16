@@ -49,7 +49,7 @@ const notify = function(service, status) {
 function inspectServices(){
     poll("UNQfy", 'http://localhost:8080/api/activated', currentunqNotification, priorunqNotification);
     poll("Logger", 'http://localhost:8083/api/activated', currentloggerNotification, priorloggerNotification);
-    //poll("Newsletter", 'http://localhost:8085/api/activated', currentnewsletterNotification, priornewsletterNotification);
+    poll("Newsletter", 'http://localhost:8085/api/activated', currentnewsletterNotification, priornewsletterNotification);
 }
 router.get("/status", (req,res) => {
     res.status(200);
