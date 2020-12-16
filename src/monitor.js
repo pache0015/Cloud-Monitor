@@ -3,7 +3,6 @@ const app = express();
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const router = express.Router();
-//const rp = require('request-promise');
 
 const port = 8081;
 app.use(bodyParser.urlencoded({extended : true}))
@@ -49,8 +48,8 @@ const notify = function(service, status) {
 }
 function inspectServices(){
     poll("UNQfy", 'http://localhost:8080/api/activated', currentunqNotification, priorunqNotification);
-    //poll("Logger", 'http://localhost:8083/logging/isAlive', currentloggerNotification, priorloggerNotification);
-    //poll("Newsletter", 'http://localhost:8085/api/isAlive', currentnewsletterNotification, priornewsletterNotification);
+    poll("Logger", 'http://localhost:8083/api/activated', currentloggerNotification, priorloggerNotification);
+    //poll("Newsletter", 'http://localhost:8085/api/activated', currentnewsletterNotification, priornewsletterNotification);
 }
 router.get("/status", (req,res) => {
     res.status(200);
